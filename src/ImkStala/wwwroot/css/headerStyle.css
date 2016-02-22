@@ -1,0 +1,107 @@
+﻿body {
+    background-color:bisque;
+}
+
+.head{
+    background-color:aliceblue;
+}
+
+.navbar
+{
+    margin:0px;
+}
+
+nav div ul li
+{
+    margin-top:0px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    transition: background-color 1.5s ease;
+}
+
+
+nav div ul li a
+{
+    transition: all 1.5s;
+    border-style:solid;
+    border-width:0px;
+    color:darkblue;
+    transition-property: font-size, border-width, color;
+}
+
+nav div ul li:hover
+{
+    background-color:aquamarine;
+}
+
+nav div ul li:hover a
+{
+    font-size: 21px;
+    border-bottom-width:2px;
+    color:aquamarine;
+}
+
+.navbar .nav > li > a {
+    line-height: 19px;
+    text-decoration: none;
+    color:teal;
+
+}
+
+.action-button
+{
+    border-style:solid;
+    border-width:2px;
+    margin-left:3px;
+    padding:0px;
+    border-color:cadetblue;
+}
+
+.action-button:hover
+{
+    background-color:wheat;
+}
+
+.navbar .nav > li > a.noPadding
+{
+    padding:9px;
+}
+
+@media screen and (min-width: 768px) {
+	
+	#registerModal .modal-dialog  {width:900px;}
+}
+
+#registerModal .modal-body
+{
+    height:500px;
+}
+
+#registerModal .modal-body > div > div
+{
+    height: 450px;
+    background-color:gainsboro;
+    border-width:1px;
+    border-style:solid;
+    border-color:lightsteelblue;
+    transition: background-color 1s ease-in-out;
+}
+
+#registerModal .modal-body > div > div:hover
+{
+    background-color:aqua;
+    cursor:pointer;
+}
+
+.closeButton
+{
+    width:100%;
+    background-color:indianred;
+    transition: background-color 1.5s ease;
+}
+
+.closeButton:hover
+{
+    background-color:red;
+}

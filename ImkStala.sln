@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4D96627E-2DEE-447E-8DF0-A09B4D1B590B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2845DC5D-C141-40E9-BEE2-2C6161E79FA7}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ImkStala", "src\ImkStala\ImkStala.xproj", "{2E1E6FE7-A9EE-4FD1-8F57-51DACBEE5345}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E1E6FE7-A9EE-4FD1-8F57-51DACBEE5345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E1E6FE7-A9EE-4FD1-8F57-51DACBEE5345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E1E6FE7-A9EE-4FD1-8F57-51DACBEE5345}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E1E6FE7-A9EE-4FD1-8F57-51DACBEE5345}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E1E6FE7-A9EE-4FD1-8F57-51DACBEE5345} = {4D96627E-2DEE-447E-8DF0-A09B4D1B590B}
+	EndGlobalSection
+EndGlobal
