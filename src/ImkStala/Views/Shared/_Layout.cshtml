@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Threading.Tasks
+@using Microsoft.ApplicationInsights.Extensibility
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -23,7 +25,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="~/js/functions.js"></script>
     <link href="~/css/contentStyle.css" rel="stylesheet" />
-    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
     <nav class="navbar navbar-default head">
