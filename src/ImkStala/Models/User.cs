@@ -7,8 +7,8 @@ namespace ImkStala.Models
 {
     public class User
     {
-        public string FName { get; set; }
-        public string LName { get; set; }
+        public string FName { get; set; } //Vardas
+        public string LName { get; set; } //Pavarde
         public string Number { get; set; }
         public string Email { get; set; }
 
