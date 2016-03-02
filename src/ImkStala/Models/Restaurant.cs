@@ -17,7 +17,8 @@ namespace ImkStala.Models
         public string Website { get; set; }
         public string Workhours { get; set; }
         public double Rating { get; set; }
-
+        //kokiu formatu turėtų būti registracijos data?
+        //string, ar kiekvienas datos laukas atskirai?
         public Restaurant()
         { }
     }
