@@ -6,13 +6,14 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DNX\Microsoft.DNX.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>2e1e6fe7-a9ee-4fd1-8f57-51dacbee5345</ProjectGuid>
+    <ProjectGuid>b5c62c48-9a5d-4d1c-99d8-9b3f639d3ea4</ProjectGuid>
     <RootNamespace>ImkStala</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\..\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">..\..\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
+    <ApplicationInsightsResourceId>/subscriptions/699eb9ed-ebec-4581-805d-ba52afaf502b/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/ImkStala</ApplicationInsightsResourceId>
   </PropertyGroup>
   <ItemGroup>
     <DnxInvisibleContent Include="bower.json" />
