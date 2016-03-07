@@ -23,19 +23,21 @@ namespace ImkStala.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private ApplicationDbContext _context;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _context = context;
         }
 
         //
@@ -87,24 +89,33 @@ namespace ImkStala.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account/RegisterRestaurant
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register()
+        public IActionResult RegisterRestaurant()
         {
             return View();
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/RegisterRestaurant
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> RegisterRestaurant(RegisterRestaurantViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                Restaurant restaurant = new Restaurant();
+                _context.Restaurants.Add(restaurant);
+                _context.SaveChanges();
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    UserAccountType = "Restaurant",
+                    RestaurantData = restaurant
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -115,7 +126,7 @@ namespace ImkStala.Controllers
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User created a new account with password.");
+                    _logger.LogInformation(3, "User created a new restaurant account with password.");
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
                 AddErrors(result);
@@ -124,6 +135,97 @@ namespace ImkStala.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        //
+        // GET: /Account/RegisterUser
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterUser()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/RegisterUser
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterUser(RegisterUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User userData = new User()
+                {
+                    Email = model.Email
+                };
+
+                _context.UsersData.Add(userData);
+                _context.SaveChanges();
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    UserAccountType = "Restaurant",
+                    UserData = userData
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
+                    // Send an email with this link
+                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
+                    //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation(3, "User created a new restaurant account with password.");
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/Register
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public IActionResult Register()
+        //{
+        //    return View();
+        //}
+
+        ////
+        //// POST: /Account/Register
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Register(RegisterViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        //        var result = await _userManager.CreateAsync(user, model.Password);
+        //        if (result.Succeeded)
+        //        {
+        //            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
+        //            // Send an email with this link
+        //            //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        //            //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+        //            //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
+        //            //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+        //            await _signInManager.SignInAsync(user, isPersistent: false);
+        //            _logger.LogInformation(3, "User created a new account with password.");
+        //            return RedirectToAction(nameof(HomeController.Index), "Home");
+        //        }
+        //        AddErrors(result);
+        //    }
+
+        //    // If we got this far, something failed, redisplay form
+        //    return View(model);
+        //}
 
         //
         // POST: /Account/LogOff

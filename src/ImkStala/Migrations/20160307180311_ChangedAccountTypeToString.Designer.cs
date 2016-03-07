@@ -8,9 +8,10 @@ using ImkStala.Models;
 namespace ImkStala.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160307180311_ChangedAccountTypeToString")]
+    partial class ChangedAccountTypeToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -56,15 +57,11 @@ namespace ImkStala.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<int?>("RestaurantDataId");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserAccountType");
-
-                    b.Property<int?>("UserDataId");
 
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
@@ -240,17 +237,6 @@ namespace ImkStala.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
-                });
-
-            modelBuilder.Entity("ImkStala.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("ImkStala.Models.Restaurant")
-                        .WithMany()
-                        .HasForeignKey("RestaurantDataId");
-
-                    b.HasOne("ImkStala.Models.User")
-                        .WithMany()
-                        .HasForeignKey("UserDataId");
                 });
 
             modelBuilder.Entity("ImkStala.Models.Reservation", b =>

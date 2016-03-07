@@ -8,9 +8,10 @@ using ImkStala.Models;
 namespace ImkStala.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160307172723_AddedApplicationUsers")]
+    partial class AddedApplicationUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -56,15 +57,11 @@ namespace ImkStala.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<int?>("RestaurantDataId");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<string>("UserAccountType");
-
-                    b.Property<int?>("UserDataId");
+                    b.Property<int?>("UserAccountTypeId");
 
                     b.Property<string>("UserName")
                         .HasAnnotation("MaxLength", 256);
@@ -244,13 +241,9 @@ namespace ImkStala.Migrations
 
             modelBuilder.Entity("ImkStala.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("ImkStala.Models.Restaurant")
+                    b.HasOne("ImkStala.Models.AccountType")
                         .WithMany()
-                        .HasForeignKey("RestaurantDataId");
-
-                    b.HasOne("ImkStala.Models.User")
-                        .WithMany()
-                        .HasForeignKey("UserDataId");
+                        .HasForeignKey("UserAccountTypeId");
                 });
 
             modelBuilder.Entity("ImkStala.Models.Reservation", b =>
